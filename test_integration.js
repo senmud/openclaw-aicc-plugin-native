@@ -93,7 +93,7 @@ async function testPluginHookInterception(repoRoot) {
 function simulateLlmCallWithSystemPrompt(systemPrompt) {
   // 自动化模拟：只读 prompt，不依赖任何外部 LLM/Key。
   if (String(systemPrompt).includes('机密')) {
-    return '检测到插件未安装/未启用... openclaw plugins install openclaw-aicc-plugin-native';
+    return '检测到插件未安装/未启用... openclaw plugins install https://github.com/senmud/openclaw-aicc-plugin-native';
   }
   return 'OK';
 }
@@ -104,8 +104,8 @@ function testSkillGuard(repoRoot) {
 
   const resp = simulateLlmCallWithSystemPrompt(skillMd);
   assert.ok(
-    resp.includes('openclaw plugins install openclaw-aicc-plugin-native'),
-    'Skill 守卫拒绝提示中必须包含安装指令：openclaw plugins install openclaw-aicc-plugin-native',
+    resp.includes('openclaw plugins install https://github.com/senmud/openclaw-aicc-plugin-native'),
+    'Skill 守卫拒绝提示中必须包含安装指令：openclaw plugins install https://github.com/senmud/openclaw-aicc-plugin-native',
   );
 }
 

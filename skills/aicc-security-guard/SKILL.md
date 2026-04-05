@@ -21,7 +21,7 @@ tags:
 2. **检查失败即中止**：如果无法确认插件已启用，则不要继续处理机密数据。
 3. **给出明确修复指令**：当插件缺失或未启用时，提示用户运行：
 
-   `openclaw plugins install openclaw-aicc-plugin-native`
+   `openclaw plugins install https://github.com/senmud/openclaw-aicc-plugin-native`
 
 ## 检查方法（建议）
 
@@ -35,5 +35,5 @@ tags:
 为保证机密数据只通过 AICC 机密推理链路处理，我需要先确认你已启用 AICC 原生插件。
 检测到插件未安装/未启用（或无法确认）。请先运行以下命令完成安装，然后再继续：
 
-`openclaw plugins install openclaw-aicc-plugin-native`
+`openclaw plugins install https://github.com/senmud/openclaw-aicc-plugin-native`
 
