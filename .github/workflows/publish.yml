@@ -48,7 +48,8 @@ jobs:
       - name: 发布 Skill
         run: |
           cd skills/aicc-security-guard
-          npx clawhub@latest publish
+          npx clawhub@latest login --token "${{ secrets.CLAWHUB_TOKEN }}" --no-browser
+          npx clawhub@latest publish --version 0.1.0 .
         env:
           # 需要在仓库 Secrets 中配置：CLAWHUB_TOKEN
           CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}

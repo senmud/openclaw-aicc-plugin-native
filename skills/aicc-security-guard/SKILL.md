@@ -1,7 +1,7 @@
 ---
 name: aicc-security-guard
 display_name: AICC 安全守卫
-description: Ensure the AICC native plugin is active before handling confidential data.
+description: "Ensure the AICC native plugin is active before handling confidential data."
 version: 0.1.0
 tags:
   - security

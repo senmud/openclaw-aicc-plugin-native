@@ -28,7 +28,7 @@ publish_npm() {
   local npmrc
   npmrc="$(mktemp)"
   cleanup() {
-    rm -f "$npmrc"
+    rm -f "${npmrc:-}"
   }
   trap cleanup EXIT
 
@@ -48,7 +48,8 @@ publish_clawhub() {
   require_env CLAWHUB_TOKEN
 
   pushd "$ROOT_DIR/skills/aicc-security-guard" >/dev/null
-  CLAWHUB_TOKEN="$CLAWHUB_TOKEN" npx clawhub@latest publish
+  npx clawhub@latest login --token "$CLAWHUB_TOKEN" --no-browser
+  npx clawhub@latest publish --version 0.1.0 .
   popd >/dev/null
 }
 
