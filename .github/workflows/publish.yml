@@ -1,0 +1,55 @@
+name: publish
+
+on:
+  # 仅在 GitHub Release 被发布（published）时触发
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    name: 发布到 NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建（TypeScript）
+        run: npm run build
+
+      - name: 发布
+        run: npm publish
+        env:
+          # 需要在仓库 Secrets 中配置：NODE_AUTH_TOKEN
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+  publish-clawhub:
+    name: 发布到 ClawHub
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: 发布 Skill
+        run: |
+          cd skills/aicc-security-guard
+          npx clawhub@latest publish
+        env:
+          # 需要在仓库 Secrets 中配置：CLAWHUB_TOKEN
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+
