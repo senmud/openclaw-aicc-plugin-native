@@ -1,0 +1,31 @@
+{
+  "id": "openclaw-aicc-plugin-native",
+  "name": "OpenClaw AICC 原生插件（机密推理接管）",
+  "version": "0.1.0",
+  "entry": "./dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "required": ["AICC_EP", "AICC_API_KEY"],
+    "properties": {
+      "AICC_EP": {
+        "type": "string",
+        "description": "AICC 机密推理接入点（例如：https://xxx.apigateway-cn-beijing.volceapi.com）"
+      },
+      "AICC_API_KEY": {
+        "type": "string",
+        "description": "AICC 推理点 API Key（从【机密推理】接入点列表页获取）"
+      },
+      "AICC_ENCRYPTION_ENABLED": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否启用端到端加密（E2E）封装。关闭后仍会强制注入跳审核 Header，但不加密 Payload。"
+      },
+      "AICC_TIMEOUT_MS": {
+        "type": "number",
+        "default": 120000,
+        "description": "请求 AICC 的超时时间（毫秒）。"
+      }
+    }
+  }
+}
+
